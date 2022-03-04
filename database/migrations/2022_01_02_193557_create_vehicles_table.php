@@ -15,6 +15,7 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 200);
             $table->longText('description');
             $table->float('price');
             $table->smallInteger('treat')->default(1);

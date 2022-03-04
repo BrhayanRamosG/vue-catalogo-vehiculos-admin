@@ -10,12 +10,19 @@ class MakeModel extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    //Scopes
+    public function scopeSearchMakeModel($query, $idMakeModel)
+    {
+        return $query->join('makes', 'makes.id', '=', 'make_models.makes_id')->where('make_models.id', '=', $idMakeModel);
+    }
+    
+    //Relationships
     public function makes()
     {
-        return $this->belongsTo('App\Models\Make');
+        return $this->belongsTo(Make::class);
     }
     public function vehicles()
     {
-        return $this->hasMany('App\Models\Vehicle');
+        return $this->hasMany(Vehicle::class);
     }
 }

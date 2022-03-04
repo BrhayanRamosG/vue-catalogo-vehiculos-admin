@@ -12,6 +12,6 @@ class Video extends Model
 
     public function Vehicles()
     {
-        return $this->belongsTo('App\Models\Vehicle');
+        return $this->belongsTo(Vehicle::class);
     }
 }

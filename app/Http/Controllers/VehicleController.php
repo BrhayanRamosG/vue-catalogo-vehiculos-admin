@@ -13,6 +13,7 @@ use App\Models\Transmission;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class VehicleController extends Controller
@@ -45,8 +46,6 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //$makes = new MakeController;
-        //return $makes->index();
         $makes = Make::all();
         $transmissions = Transmission::all();
         $categories = Category::all();
@@ -89,7 +88,15 @@ class VehicleController extends Controller
             'status_vehicles_id' => 'required',
             'conditions_id' => 'required',
         ]);
-        Vehicle::create($request->all());
+        $vehicle = $request->all();
+
+        $noTags = strip_tags(str_replace(["&nbsp;", "."], ['', ' '], $request->get("description")));
+        $data = MakeModel::searchMakeModel($request->get("make_models_id"))->first();
+        $title = Str::of($data['make_name'])->append(" " . $data['model_name'] . "")->append(" " . $request->get("year") . "")->append(" " . $noTags . "");
+        $slug = Str::limit($title, 156);
+
+        $vehicle['slug'] = Str::slug($slug);
+        Vehicle::create($vehicle);
         return Redirect::route('vehiculos.index');
     }
 

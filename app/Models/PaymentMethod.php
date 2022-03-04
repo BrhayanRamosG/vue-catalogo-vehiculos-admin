@@ -12,6 +12,6 @@ class PaymentMethod extends Model
 
     public function vehicles()
     {
-        return $this->hasMany('App\Models\Vehicle');
+        return $this->hasMany(Vehicle::class);
     }
 }

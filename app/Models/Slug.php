@@ -11,6 +11,6 @@ class Slug extends Model
     protected $guarded = ['id'];
     public function vehicles()
     {
-        return $this->belongsTo('App\Models\Vehicle');
+        return $this->belongsTo(Vehicle::class);
     }
 }

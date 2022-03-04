@@ -12,50 +12,50 @@ class Vehicle extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
     public function videos()
     {
-        return $this->hasMany('App\Models\Video');
+        return $this->hasMany(Video::class);
     }
     public function images()
     {
-        return $this->hasMany('App\Models\Image');
+        return $this->hasMany(Image::class);
     }
     public function conditions()
     {
-        return $this->belongsTo('App\Models\Condition');
+        return $this->belongsTo(Condition::class);
     }
     public function payment_methods()
     {
-        return $this->belongsTo('App\Models\PaymentMethod');
+        return $this->belongsTo(PaymentMethod::class);
     }
     public function colors()
     {
-        return $this->belongsToMany('App\Models\Color');
+        return $this->belongsToMany(Color::class);
     }
     public function proprietaries()
     {
-        return $this->belongsTo('App\Models\Proprietary');
+        return $this->belongsTo(Proprietary::class);
     }
     public function categories()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
     }
     public function make_models()
     {
-        return $this->belongsTo('App\Models\MakeModel');
+        return $this->belongsTo(MakeModel::class);
     }
     public function transmissions()
     {
-        return $this->belongsTo('App\Models\Transmission');
+        return $this->belongsTo(Transmission::class);
     }
     public function status_vehicles()
     {
-        return $this->belongsTo('App\Models\StatusVehicle');
+        return $this->belongsTo(StatusVehicle::class);
     }
     public function slugs()
     {
-        return $this->hasOne('App\Models\Slug');
+        return $this->hasOne(Slug::class);
     }
 }
